@@ -1,32 +1,66 @@
-void overflow(int first,int second,int result){
-    if(first>0 && second>0){
-        if(result>0){
-            vini[5]=0;
-        }
-        else{
-            vini[5]=1;
+#include <stdio.h>
+#include <stdlib.h> 
+#include <ctype.h>
+#include <string.h>
+#include <unistd.h>
+int current_line=1;
+int ram[10];
+int current_ram = 0 ;
+int status=1;
+int line=0;
+int jmploop=0;
+int S[32];
+int vini[8]={0};
+char buffer[30];
+char funcname[30];
+void processor(FILE *f);
+void situation(int result); 
+void overflow(int first,int second,int result);
+void ext();
+int main(int argc,char *argv[]){
+    fprintf(stdout,"CPU's turning on\n");
+    fprintf(stdout,"please wait...\n");
+    fprintf(stdout,"Estimated wait time: \n");
+    for(int i=3 ; i>-1 ; i--){
+        fprintf(stdout,"\r%ds",i);
+        sleep(1);
+        fflush(stdout);
+    }
+    putchar('\n');
+    //printf("%s",argv[1]);
+    // FILE *f ;   //baraye halat dovom input ke hamoonja ke compile mikonim jolosh minevisim
+    // f = fopen(argv[1],"r");
+    for(int i=0 ; i<32 ; i++){              //baraye meghdar dehi be register
+        S[i] = i ;                        //
+    }                                       //
+    printf("Enter name of the file you want to open (For example: filename.txt)\n");
+    char filename[40];
+    scanf("%s",&filename);                        
+    FILE *f ;
+    f = fopen(filename,"r");
+    while(fscanf(f,"%[^\n]\n",buffer) != EOF ){
+        if(status==1){
+            for(int i=0 ; i<30 ; i++){
+                if(buffer[i] == ' '){
+                    break;
+                }
+                else{
+                    funcname[i]=buffer[i];
+                }
+            }
+            if(current_line >= line){ 
+                //printf("currentline: %d & line: %d\n",current_line,line);
+                processor(f);
+            }
+            current_line++;
+            for(int i=0 ; i<30 ; i++){
+                buffer[i]= '\0' ;
+                funcname[i]='\0';
+            }
         }
     }
-    else if(first<0 && second<0){
-        if(result<0){
-            vini[5]=0;
-        }
-        else{
-            vini[5]=1;
-        }
-    }
-    else if((first*second)<0){
-        vini[5]=0;
-    }
-}
-void ext(){
-    char ask[1];
-    fprintf(stderr,"Are you sure about exiting?(y/n) ");
-    scanf("%s", ask);
-    if(strcmp(ask,"y") == 0){
-        status = 0;
-        fprintf(stderr,"Program is finished successfully! :)\n");
-    }
+    fclose(f);
+    return 0;
 }
 void processor(FILE *f){                                                       //Functions:
     for(int i=0 ; i<30 ; i++){
@@ -481,5 +515,35 @@ void situation(int result){
     }
     else{
         vini[0]=1;
+    }
+}
+void overflow(int first,int second,int result){
+    if(first>0 && second>0){
+        if(result>0){
+            vini[5]=0;
+        }
+        else{
+            vini[5]=1;
+        }
+    }
+    else if(first<0 && second<0){
+        if(result<0){
+            vini[5]=0;
+        }
+        else{
+            vini[5]=1;
+        }
+    }
+    else if((first*second)<0){
+        vini[5]=0;
+    }
+}
+void ext(){
+    char ask[1];
+    fprintf(stderr,"Are you sure about exiting?(y/n) ");
+    scanf("%s", ask);
+    if(strcmp(ask,"y") == 0){
+        status = 0;
+        fprintf(stderr,"Program is finished successfully! :)\n");
     }
 }
