@@ -456,3 +456,30 @@ void processor(FILE *f){                                                       /
         fprintf(stderr,"Input function correctly!!\n");
     }
 }
+void situation(int result){
+    if(result==0){                                              //Zero flag 
+        vini[1] = 1;
+    }
+    else{
+        vini[1]=0;
+    }
+    if(result<0){                                               //Sign flag
+        vini[2]=1;
+    }
+    else{
+        vini[2]=0;
+    }
+    int count=0;                                                //Parity flag
+    while(result>0){
+        if((result & 1) == 1){
+            count++;
+        }
+        result = result >> 1 ;
+    }
+    if(count%2 == 0){
+        vini[0]=0;
+    }
+    else{
+        vini[0]=1;
+    }
+}
