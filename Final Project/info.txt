@@ -1,0 +1,53 @@
+@@ welcome @@
+Functions:
+	//ADD S(d), S(s), S(f) 
+	(d): destination-register num.   (s): second-register num.    (f): first-register num.
+	ADD function gets first&second-register and put their addition into des-register
+	//SUB
+	.
+	//AND
+	.
+	//XOR
+	.
+	//OR
+	.
+	//ADDI	
+	.
+	//SUBI
+	.
+	//ANDI
+	.
+	//XORI
+	.
+	//ORI
+	.
+	//MOV
+	.
+	//SWP
+	.
+	//DUMP_REGS
+	.
+	//DUMP_REGS_F
+	.
+	//INPUT
+	.
+	//OUTPUT
+	.
+	//JMP
+	.
+	//EXIT
+	.
+	//MLT
+	.
+	//DIV
+	.
+	//SKIE
+	.
+	//MULL
+	.
+	//PUSH
+	.
+	//POP
+ 	.
+	//INFO
+	.

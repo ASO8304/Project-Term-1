@@ -1,0 +1,15 @@
+MOV S0, 4                //S0 = 4
+MOV S1, 5                //S1 = 5
+ADD S2, S1, S0	 //S2 = S1 + S0 = 9
+SUB S3, S1, S0          //S3 = S1 - S0 = 1
+AND S4, S1, S0	 //S4 = S1 and S0 = 4
+XOR S5, S1, S0	 //S5 = S1 xor S0 = 1
+OR S6, S1, S0	 //S6 = S1 or S0 = 5
+ANDI S7, S1, 3	 //S7 = S1 and 3 = 1
+SWP S7, S6	 //S6 = 1, S7 = 5
+MULL S7, S6	 //S6 = 5, S7 = 5
+DIV S7, S6	 //S6 = 0, S7 = 1
+SKIE S7, S6	 //S7 != S6 >>> no change
+DUMP_REGS
+DUMP_REGS_F
+EXIT

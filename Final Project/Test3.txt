@@ -1,0 +1,11 @@
+Push S12
+POp S0
+jmp 5
+dump_regs 
+input
+OUtput
+jmp 4
+exit
+Info
+spy 
+Skie S15, S12
